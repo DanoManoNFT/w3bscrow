@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>W3Bscrow NFT Swap</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>W3Bscrow NFT Swap</h1>
+      <button id="connectWallet">Connect Wallet</button>
+    </header>
+
+    <main>
+      <section class="card" id="networkSection">
+        <h2>Connection</h2>
+        <div class="info-grid">
+          <div>
+            <h3>Account</h3>
+            <p id="accountDisplay">Not connected</p>
+          </div>
+          <div>
+            <h3>Network</h3>
+            <p id="networkDisplay">—</p>
+          </div>
+          <div>
+            <h3>Contract</h3>
+            <p>
+              <span id="contractAddress">—</span>
+              <button id="copyContract" class="link-button" type="button">Copy</button>
+            </p>
+          </div>
+          <div>
+            <h3>Escrow Fee</h3>
+            <p id="feeDisplay">—</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="createOfferSection">
+        <h2>Create Swap Offer</h2>
+        <p class="section-intro">
+          Select the NFTs you want to escrow and the NFTs you expect in return. The
+          contract supports up to <span id="nftLimit">20</span> NFTs on each side.
+        </p>
+        <form id="createOfferForm">
+          <div class="nft-list">
+            <h3>Your NFTs to escrow</h3>
+            <div id="offerNFTs" class="nft-collection"></div>
+            <button type="button" class="add-row" data-target="offerNFTs">
+              + Add NFT
+            </button>
+          </div>
+
+          <div class="nft-list">
+            <h3>NFTs you expect in return</h3>
+            <div id="requestNFTs" class="nft-collection"></div>
+            <button type="button" class="add-row" data-target="requestNFTs">
+              + Add NFT
+            </button>
+          </div>
+
+          <label class="inline-field">
+            <span>Duration (hours)</span>
+            <input type="number" id="durationHours" min="1" step="1" value="24" />
+          </label>
+
+          <button type="submit" class="primary">Create Offer</button>
+        </form>
+      </section>
+
+      <section class="card" id="offersSection">
+        <div class="section-header">
+          <h2>Active Offers</h2>
+          <div class="actions">
+            <button id="refreshOffers" class="secondary">Refresh</button>
+          </div>
+        </div>
+        <div id="offersList" class="offers"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Need test AVAX? Use the Fuji faucet and update
+        <code>frontend/config.js</code> with your contract details before interacting
+        on mainnet.
+      </p>
+    </footer>
+
+    <div id="toast" role="alert"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" integrity="sha384-R9IiMaTZGi99ZTSdKCbFf8gLuwZ/EuaEyBqxL9NpocVRE4H+qJTbpwiYxcQnOuwk" crossorigin="anonymous"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
