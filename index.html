@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemonini</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <section id="loading-screen" class="screen active" aria-label="Loading screen">
+      <div class="loading-card">
+        <h1>Pokemonini</h1>
+        <p class="tagline">A tiny vintage-inspired 1v1 battle.</p>
+        <div class="loading-bar" aria-hidden="true">
+          <span class="loading-bar__fill"></span>
+        </div>
+        <button id="play-button" class="primary-button">Play</button>
+        <p class="press-play">Press Play to battle!</p>
+      </div>
+    </section>
+
+    <section id="battle-screen" class="screen" aria-label="Battle screen">
+      <div class="battlefield">
+        <div class="battle-row enemy-row">
+          <div class="info-card">
+            <div class="name-row">
+              <span id="enemy-name">Brandogno Il’ Rugonononono</span>
+              <span id="enemy-status" class="status"></span>
+            </div>
+            <div class="hp-bar">
+              <div id="enemy-hp-bar" class="hp-bar__fill"></div>
+            </div>
+            <div class="hp-text"><span id="enemy-hp">50</span>/<span id="enemy-max">50</span> HP</div>
+          </div>
+          <div class="sprite-wrap">
+            <div class="sprite sprite--enemy" role="img" aria-label="Brandogno"></div>
+          </div>
+        </div>
+
+        <div class="battle-row player-row">
+          <div class="sprite-wrap">
+            <div class="sprite sprite--player" role="img" aria-label="Justino"></div>
+          </div>
+          <div class="info-card">
+            <div class="name-row">
+              <span id="player-name">Justino Il’ Banino</span>
+              <span id="player-status" class="status"></span>
+            </div>
+            <div class="hp-bar">
+              <div id="player-hp-bar" class="hp-bar__fill"></div>
+            </div>
+            <div class="hp-text"><span id="player-hp">80</span>/<span id="player-max">80</span> HP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="battle-ui">
+        <div id="dialogue" class="dialogue-box" aria-live="polite"></div>
+        <div id="menu" class="menu">
+          <div id="main-actions" class="action-grid">
+            <button class="action-button" data-action="fight">FIGHT</button>
+            <button class="action-button" data-action="bag">BAG</button>
+          </div>
+          <div id="fight-actions" class="action-grid hidden">
+            <button class="action-button" data-move="chop">Chop It Off</button>
+            <button class="action-button" data-move="blast">Banana Blast</button>
+            <button class="action-button secondary" data-action="back">Back</button>
+          </div>
+          <div id="bag-actions" class="action-grid hidden">
+            <button class="action-button" data-item="superPotion">Super Potion (+50)</button>
+            <button class="action-button" data-item="potion">Potion (+10)</button>
+            <button class="action-button secondary" data-action="back">Back</button>
+          </div>
+          <div id="end-actions" class="action-grid hidden">
+            <button id="restart-button" class="action-button">Restart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
