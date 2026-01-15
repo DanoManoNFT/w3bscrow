@@ -1,5 +1,6 @@
 /* =========================
    POKEMONINI — Gen 1 Battle CSS
+   (fixed: screen switching + Play button)
    Replace your entire style.css with this file
    ========================= */
 
@@ -40,19 +41,40 @@ body {
   overflow: hidden;
 }
 
-/* Screens */
-.screen { display: none; width: 100%; height: 100%; }
-.screen.active { display: block; }
+/* Screens (IMPORTANT: .active must be flex so click/flow is correct) */
+.screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
 
-/* -------------------------
-   Loading screen (retro card)
-   ------------------------- */
-#loading-screen {
+.screen.active {
   display: flex;
+}
+
+/* Loading screen */
+#loading-screen {
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+/* Battle screen should be grid when active */
+#battle-screen {
+  flex-direction: column; /* because .screen.active uses flex */
+  width: 100%;
+  height: 100%;
+  display: none; /* hidden unless active */
+}
+
+#battle-screen.active {
+  display: grid;           /* override flex for battle screen */
+  grid-template-rows: 360px 1fr;
+}
+
+/* -------------------------
+   Loading screen (retro card)
+   ------------------------- */
 .loading-card {
   width: 420px;
   background: var(--panel);
@@ -112,12 +134,6 @@ body {
 /* -------------------------
    Battle screen layout
    ------------------------- */
-#battle-screen {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 360px 1fr;
-}
 
 /* Top battlefield area */
 .battlefield {
@@ -220,7 +236,7 @@ body {
   position: relative;
 }
 
-/* Sprite images (you swapped DIV -> IMG in index.html) */
+/* Sprite images */
 .sprite {
   width: 100%;
   height: 100%;
@@ -254,7 +270,7 @@ body {
   gap: 12px;
 }
 
-/* Dialogue box: big left box like classic */
+/* Dialogue box */
 .dialogue-box {
   border: 5px solid var(--border);
   background: var(--panel);
@@ -265,7 +281,7 @@ body {
   overflow: hidden;
 }
 
-/* Menu area on right like classic “FIGHT / BAG” */
+/* Menu box */
 .menu {
   border: 5px solid var(--border);
   background: var(--panel);
@@ -295,18 +311,14 @@ body {
   box-shadow: 0 4px 0 rgba(0,0,0,0.16);
 }
 
-.action-button:hover {
-  background: #f3efe7;
-}
+.action-button:hover { background: #f3efe7; }
 
 .action-button:active {
   transform: translateY(2px);
   box-shadow: 0 2px 0 rgba(0,0,0,0.16);
 }
 
-.action-button.secondary {
-  background: #e6e0d6;
-}
+.action-button.secondary { background: #e6e0d6; }
 
 .action-button:disabled {
   opacity: 0.5;
